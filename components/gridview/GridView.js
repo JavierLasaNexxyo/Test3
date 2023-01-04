@@ -11,10 +11,29 @@ export default function GridView({
     filterGrid,
     dataStateGrid,
     onRowClick,
-    axiosConfig
+    axiosConfigGrid
 }) {
     const [dataState, setDataState] = useState(dataStateGrid)
     const [pageState, setPageState] = useState(pageStateGrid)
+
+    const axiosConfig = {
+        endPoints:{
+            ...axiosConfigGrid.endPoints
+        },
+        resources:{            
+            ...axiosConfigGrid.resources
+        },
+        config: {
+            method: axiosConfigGrid.config.method,
+            url: axiosConfigGrid.config.url,
+            data: {
+                ...filterGrid,
+                Page: pageState.page,
+                RecordsPerPage: pageState.pageSize
+            }
+        },
+        onLoad: false
+    }
 
     const [response, isLoading, refetch] = useAxios({axiosConfig})
 
