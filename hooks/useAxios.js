@@ -40,7 +40,7 @@ const useAxios = axiosParams => {
 
         await axios({
             method: 'post',
-            url: axiosParams.endPoints.authLogout,
+            url: axiosParams.axiosConfig.endPoints.authLogout,
             headers,
             withCredentials: true,
             timeout: process.env.REACT_APP_API_TIMEOUT_REFRESH
@@ -64,7 +64,7 @@ const useAxios = axiosParams => {
                 setHeaders(headers)
 
                 const refreshOk = await axios
-                    .get(axiosParams.endPoints.authRefresh, {
+                    .get(axiosParams.axiosConfig.endPoints.authRefresh, {
                         headers,
                         withCredentials: true,
                         timeout: process.env.REACT_APP_API_TIMEOUT_REFRESH
